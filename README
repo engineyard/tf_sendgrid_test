@@ -1,0 +1,14 @@
+== Tres Fiestas Mailgun Test
+
+this is an app for testing a mail service, in this case mailgun.
+
+at the time of writing this they only have part of the API exposed so you will need to manually update your application.rb
+
+config.action_mailer.smtp_settings = {
+      :authentication => :plain,
+      :address => "smtp.mailgun.org",
+      :port => 25,
+      :domain => "UPDATE_ME",
+      :user_name => "UPDATE_ME",
+      :password => "UPDATE_ME"
+}
