@@ -39,13 +39,17 @@ module TfMail
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.default_charset = "utf-8"
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.raise_delivery_errors = true
     config.action_mailer.smtp_settings = {
-          :authentication => :plain,
-          :address => "smtp.mailgun.org",
-          :port => 25,
-          :domain => "ey7.mailgun.org",
-          :user_name => "postmaster@ey7.mailgun.org",
-          :password => "68w0ewuhgv59"
-    }  
+         :authentication => :plain,
+         :address => "smtp.sendgrid.net",
+         :port => 587,
+         :domain => EY::Config.get(:sendgrid, 'SENDGRID_SMTP_HOST'),
+         :user_name => EY::Config.get(:sendgrid, 'SENDGRID_USERNAME'),
+         :password => EY::Config.get(:sendgrid, 'SENDGRID_PASSWORD')
+    }
   end
 end
